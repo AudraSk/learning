@@ -3,159 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Website</title>
+    <title>LINESTRING Display</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
-        body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-
-        header {
-            background-image: url('hero-background.jpg'); /* Replace with your image URL */
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            font-size: 3em;
-        }
-
-        nav {
-            background-color: #333;
-            padding: 10px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            margin: 0 10px;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #ffcc00;
-        }
-
-        section {
-            padding: 80px 20px;
-        }
-
-        .map-container {
-            position: relative;
-            width: 100%;
+        #map {
             height: 400px;
-            background-image: url('map-background.jpg'); /* Replace with your image URL */
-            background-size: cover;
-            background-position: center;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            margin: 40px 0;
-        }
-
-        #interactive-map {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Add your interactive map animation styles here */
-        }
-
-        .text-box {
-            width: 70%;
-            margin: auto;
-            padding: 40px;
-            text-align: center;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
-        }
-
-        .media-box {
-            width: 100%;
-            height: 500px;
-            background-image: url('media-background.jpg'); /* Replace with your image or video URL */
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            margin: 40px 0;
-        }
-
-        .media-box h2,
-        .media-box p {
-            color: white;
-        }
-
-        /* Add more custom styles as needed */
-
-        @media (max-width: 768px) {
-            .text-box {
-                width: 90%;
-                padding: 20px;
-            }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Your Stylish Title</h1>
-</header>
+<div id="map"></div>
 
-<nav>
-    <a href="#section1">Section 1</a>
-    <a href="#section2">Section 2</a>
-    <a href="#section3">Section 3</a>
-</nav>
-
-<section id="section1">
-    <div class="text-box">
-        <h2>Section 1</h2>
-        <p>This is the content of Section 1.</p>
-    </div>
-</section>
-
-<section id="section2" class="map-container">
-    <div id="interactive-map">
-        <!-- Add your interactive map content here -->
-    </div>
-</section>
-
-<section id="section3" class="media-box">
-    <div class="text-box">
-        <h2>Section 3</h2>
-        <p>This is the content of Section 3.</p>
-    </div>
-</section>
-
-<!-- Add more sections as needed -->
-
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-    // Add your interactive map JavaScript code here
+    // Coordinates of the LINESTRING
+    var lineStringCoords = [
+        [-101.73614, 48.3119712],
+        [-102.26074, 48.99824],
+        [-102.55187, 49.000042],
+        [-102.55737, 49.4770478],
+        [-102.36785, 49.4431287],
+        [-101.23695, 49.7369065]
+    ];
+
+    // Initialize the map
+    var map = L.map('map').setView([lineStringCoords[0][1], lineStringCoords[0][0]], 10);
+
+    // Add the OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Create a polyline with the LINESTRING coordinates
+    var polyline = L.polyline(lineStringCoords, {color: 'blue'}).addTo(map);
+
+    // Fit the map to the bounds of the polyline
+    map.fitBounds(polyline.getBounds());
 </script>
 
 </body>
 </html>
+
