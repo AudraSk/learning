@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LINESTRING Display</title>
+    <title>LINESTRING Display on US Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         #map {
@@ -27,8 +27,8 @@
         [-101.23695, 49.7369065]
     ];
 
-    // Initialize the map
-    var map = L.map('map').setView([lineStringCoords[0][1], lineStringCoords[0][0]], 10);
+    // Initialize the map with a view centered on the United States
+    var map = L.map('map').setView([37.8, -96], 4);
 
     // Add the OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -44,4 +44,3 @@
 
 </body>
 </html>
-
