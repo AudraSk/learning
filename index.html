@@ -1,14 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Title</title>
-    <link rel="stylesheet" href="screen.css">
-  </head>
-  <body>
-    <h1>Heading</h1>
-    <script src="index.js"></script>
-  </body>
+    <title>Interactive Storytelling</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+
+        #story-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        button {
+            display: block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="story-container">
+    <p id="story">Once upon a time...</p>
+    <button onclick="makeChoice(1)">Choice 1</button>
+    <button onclick="makeChoice(2)">Choice 2</button>
+</div>
+
+<script>
+    function makeChoice(choice) {
+        var storyElement = document.getElementById('story');
+
+        if (choice === 1) {
+            storyElement.textContent = "You chose the first option. This is the outcome of choice 1.";
+        } else if (choice === 2) {
+            storyElement.textContent = "You chose the second option. This is the outcome of choice 2.";
+        }
+
+        // Additional logic for more choices can be added here
+
+        // Disable the buttons after a choice is made
+        var buttons = document.querySelectorAll('button');
+        buttons.forEach(function(button) {
+            button.disabled = true;
+        });
+    }
+</script>
+
+</body>
 </html>
